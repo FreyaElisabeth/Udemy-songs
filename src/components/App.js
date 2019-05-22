@@ -1,12 +1,14 @@
 import React from 'react'
 import SongList from './SongList'
 import SongDetail from './SongDetail'
+import Form from './Form'
 
 const App = props => {
   return (
     <div className="ui container grid" style={{ marginTop: '20px' }}>
       <div className="ui row">
         <div className="column eight wide">
+          <Form />
           <SongList />
         </div>
         <div className="column eight wide">

@@ -1,24 +1,26 @@
 import { combineReducers } from 'redux'
 
-export const songsReducer = () => {
-  return [
-    {
-      title: 'Dont cry for me, Argentina',
-      duration: '4:05'
-    },
-    {
-      title: 'The Heart Must Go On',
-      duration: '6:10'
-    },
-    {
-      title: 'Asereje',
-      duration: '2:32'
-    },
-    {
-      title: 'Mein Teil',
-      duration: '5:45'
+export const changeInputValue = (
+  formValues = { title: '', duration: '' },
+  action
+) => {
+  console.log('changeInputValue', formValues)
+  if (action.type === 'CHANGE_INPUT_VALUE') {
+    return {
+      ...formValues,
+      [action.payload.inputName]: action.payload.inputValue
     }
-  ]
+  }
+
+  return formValues
+}
+
+export const songsReducer = (songs = null, action) => {
+  if (action.type === 'ADD_SONG') {
+    return [...songs, action.payload]
+  }
+
+  return songs
 }
 
 export const selectedSongReducer = (selectedSong = null, action) => {
@@ -31,5 +33,6 @@ export const selectedSongReducer = (selectedSong = null, action) => {
 
 export default combineReducers({
   songs: songsReducer,
-  selectedSong: selectedSongReducer
+  selectedSong: selectedSongReducer,
+  formValues: changeInputValue
 })
