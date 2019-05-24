@@ -25,11 +25,18 @@ const initialState = {
       duration: '5:45'
     }
   ],
-  formValues: [{ title: '' }, { duration: '' }]
+  formValues: { title: '', duration: '' }
 }
 
 ReactDOM.render(
-  <Provider store={createStore(reducers, initialState)}>
+  <Provider
+    store={createStore(
+      reducers,
+      initialState,
+      window.__REDUX_DEVTOOLS_EXTENSION__ &&
+        window.__REDUX_DEVTOOLS_EXTENSION__()
+    )}
+  >
     <App />
   </Provider>,
   document.querySelector('#root')

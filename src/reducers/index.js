@@ -1,10 +1,6 @@
 import { combineReducers } from 'redux'
 
-export const changeInputValue = (
-  formValues = { title: '', duration: '' },
-  action
-) => {
-  console.log('changeInputValue', formValues)
+export const changeInputValue = (formValues = {}, action) => {
   if (action.type === 'CHANGE_INPUT_VALUE') {
     return {
       ...formValues,
